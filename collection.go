@@ -24,7 +24,9 @@ func (repo *Collection[T]) Insert(model T) (T, error) {
 	}
 
 	res, err := repo.collection.InsertOne(DefaultContext(), model)
-	model.SetID(res.InsertedID.(string))
+	if err != nil {
+		model.SetID(res.InsertedID.(string))
+	}
 	return model, err
 }
 
@@ -47,7 +49,6 @@ func (repo *Collection[T]) UpdateMany(filter interface{}, doc bson.M) error {
 	_, err := repo.collection.UpdateMany(DefaultContext(), filter, doc)
 	return err
 }
-
 
 func (repo *Collection[T]) DeleteById(id string) error {
 	res, err := repo.collection.DeleteOne(DefaultContext(), bson.M{"_id": id})
