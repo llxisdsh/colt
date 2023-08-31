@@ -3,7 +3,6 @@ module github.com/llxisdsh/colt
 go 1.18
 
 require (
-	github.com/jensteichert/colt v0.0.9
 	github.com/stretchr/testify v1.8.4
 	go.mongodb.org/mongo-driver v1.12.1
 )

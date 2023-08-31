@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/jensteichert/colt"
+	"github.com/llxisdsh/colt"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
@@ -11,10 +11,10 @@ type Database struct {
 }
 type Todo struct {
 	colt.DocWithTimestamps `bson:",inline"`
-	Title    string `bson:"title" json:"title"`
+	Title                  string `bson:"title" json:"title"`
 }
 
-func(t *Todo) BeforeInsert() error {
+func (t *Todo) BeforeInsert() error {
 	t.DocWithTimestamps.BeforeInsert()
 	fmt.Println("BeforeInsert executed")
 	return nil
